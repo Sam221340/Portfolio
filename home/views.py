@@ -1,3 +1,5 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect, get_object_or_404
 from django.http import Http404
 from home.models import Blog
@@ -104,6 +106,29 @@ def blogpost (request, slug):
         context = {'message': 'Blog post not found'}
         return render(request, '404.html', context, status=404)
 
+
+
+def signin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        pass1 = request.POST['pass1']
+
+        user = authenticate(username=username, password=pass1)
+
+        if user is not None:
+            login(request, user)
+            return redirect('drag')  # Assuming 'homepage' is the name of your homepage URL pattern
+        else:
+            messages.error(request, 'Invalid username or password')
+            return render(request, 'login.html')
+
+    return render(request, 'login.html')
+
+@login_required
+def drag(request):
+    if not request.user.is_authenticated:
+        return redirect('logiini')
+    return render(request,'drag.html')
 # def blogpost (request, slug):
 #     blog = Blog.objects.filter(slug=slug).first()
 #     context = {'blog': blog}
