@@ -129,7 +129,7 @@ def signin(request):
 
 def drag(request):
     referer = request.META.get('HTTP_REFERER')
-    if referer != 'http://127.0.0.1:8000/logiiin':
+    if referer != 'http://127.0.0.1:8000/logiiin' or 'https://portfolio-rohit-84.vercel.app/logiiin':
         return render(request,'404.html')
     return render(request, 'drag.html')
 # def blogpost (request, slug):
