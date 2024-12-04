@@ -71,7 +71,7 @@ img {
 
 
 .paper.heart::before {
-  content: "PALLAVI";
+  content: "P";
   position: absolute;
   top: 40%; /* Center vertically */
   left: 50%; /* Center horizontally */

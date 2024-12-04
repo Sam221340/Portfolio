@@ -89,11 +89,14 @@ WSGI_APPLICATION = 'blogApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # Default location
+        'ENGINE': 'django.db.backends.postgresql',  # Database engine for PostgreSQL
+        'NAME': 'postgres',              # Database name
+        'USER': 'postgres',              # Database username
+        'PASSWORD': '1234',      # Database password
+        'HOST': 'localhost',                       # Host, e.g., localhost or an IP address
+        'PORT': '5432',                            # Port number, default is 5432 for PostgreSQL
     }
 }
 
