@@ -1,36 +1,143 @@
-{% extends 'base.html' %}
-{% load static %}
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block title %}404{% endblock title %}
+	<title>404 HTML Template by Colorlib</title>
 
-{% block content %}
+	<link type="text/css" rel="stylesheet" href="static/css/404_style.css">
 
-<div class='bg-gray-800 text-white p-3 md:px-10 lg:px-20 xl:px-40 2xl:px-72'>
-    <div class='p-5 grid place-items-center mt-10 mb-40 text-center'>
-        {% comment %} <img class='h-auto w-96' src="{% static 'images/404-error.svg' %}" alt="image"> {% endcomment %}
-        <p style="font-family: Poppins-Bold;" class='my-4 text-5xl font-extrabold md:text-8xl'>404</p>
-        <p class=''>We couldn't find the requested page. It must have been sucked into a wormhole.</p>
-    </div>
-    <div class="text-xl p-5 grid grid-cols-1 place-items-center items-center md:grid-cols-3 -mt-44 gap-x-4">
-        <div onclick="location.href='/';" style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05);" class="hover:scale-105 hover:transform transition duration-300 cursor-pointer bg-gray-900 rounded-lg h-40 w-full my-4 text-center p-5 grid place-items-center">
-            <div>
-            <p class='text-4xl my-2'><i class="bi bi-house-door text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-blue-500"></i></p>
-            <p class='text-base'>Return Home</p>
-            </div>
-        </div>
-        <div onclick="location.href='/categories';" style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05);" class="hover:scale-105 hover:transform transition duration-300 cursor-pointer bg-gray-900 rounded-lg h-40 w-full my-4 text-center p-5 grid place-items-center">
-            <div>
-            <p class='text-4xl my-2'><i class="bi bi-tags text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-blue-500"></i></p>
-            <p class='text-base'>Browse Categories</p>
-            </div>
-        </div>
-        <div onclick="location.href='/blog';" style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05);" class="hover:scale-105 hover:transform transition duration-300 cursor-pointer bg-gray-900 rounded-lg h-40 w-full my-4 text-center p-5 grid place-items-center">
-            <div>
-            <p class='text-4xl my-2'><i class="bi bi-book text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-blue-500"></i></p>
-            <p class='text-base'>Visit Blog</p>
-            </div>
-        </div>
-    </div>
+<meta name="robots" content="noindex, follow">
+</head>
+
+<body>
+
+<div class="moon"></div>
+<div class="moon__crater moon__crater1"></div>
+<div class="moon__crater moon__crater2"></div>
+<div class="moon__crater moon__crater3"></div>
+
+<div class="star star1"></div>
+<div class="star star2"></div>
+<div class="star star3"></div>
+<div class="star star4"></div>
+<div class="star star5"></div>
+
+<div class="error">
+  <div class="error__title">404</div>
+  <div class="error__subtitle">Hmmm...</div>
+  <div class="error__description">You have to login again 😉</div>
+    <a href="{% url 'logiini' %}">
+  <button type="button" class="error__button error__button--active">LOGIN</button></a>
 </div>
 
-{% endblock %}
+<div class="astronaut">
+  <div class="astronaut__backpack"></div>
+  <div class="astronaut__body"></div>
+  <div class="astronaut__body__chest"></div>
+  <div class="astronaut__arm-left1"></div>
+  <div class="astronaut__arm-left2"></div>
+  <div class="astronaut__arm-right1"></div>
+  <div class="astronaut__arm-right2"></div>
+  <div class="astronaut__arm-thumb-left"></div>
+  <div class="astronaut__arm-thumb-right"></div>
+  <div class="astronaut__leg-left"></div>
+  <div class="astronaut__leg-right"></div>
+  <div class="astronaut__foot-left"></div>
+  <div class="astronaut__foot-right"></div>
+  <div class="astronaut__wrist-left"></div>
+  <div class="astronaut__wrist-right"></div>
+
+  <div class="astronaut__cord">
+    <canvas id="cord" height="500px" width="500px"></canvas>
+  </div>
+
+  <div class="astronaut__head">
+    <canvas id="visor" width="60px" height="60px"></canvas>
+    <div class="astronaut__head-visor-flare1"></div>
+    <div class="astronaut__head-visor-flare2"></div>
+  </div>
+
+    </div>
+
+<script>
+    function drawVisor() {
+  const canvas = document.getElementById('visor');
+  const ctx = canvas.getContext('2d');
+
+  ctx.beginPath();
+  ctx.moveTo(5, 45);
+  ctx.bezierCurveTo(15, 64, 45, 64, 55, 45);
+
+  ctx.lineTo(55, 20);
+  ctx.bezierCurveTo(55, 15, 50, 10, 45, 10);
+
+  ctx.lineTo(15, 10);
+
+  ctx.bezierCurveTo(15, 10, 5, 10, 5, 20);
+  ctx.lineTo(5, 45);
+
+  ctx.fillStyle = '#2f3640';
+  ctx.strokeStyle = '#f5f6fa';
+  ctx.fill();
+  ctx.stroke();
+}
+
+const cordCanvas = document.getElementById('cord');
+const ctx = cordCanvas.getContext('2d');
+
+let y1 = 160;
+let y2 = 100;
+let y3 = 100;
+
+let y1Forward = true;
+let y2Forward = false;
+let y3Forward = true;
+
+function animate() {
+  requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+  ctx.beginPath();
+  ctx.moveTo(130, 170);
+  ctx.bezierCurveTo(250, y1, 345, y2, 400, y3);
+
+  ctx.strokeStyle = 'white';
+  ctx.lineWidth = 8;
+  ctx.stroke();
+
+
+  if (y1 === 100) {
+    y1Forward = true;
+  }
+
+  if (y1 === 300) {
+    y1Forward = false;
+  }
+
+  if (y2 === 100) {
+    y2Forward = true;
+  }
+
+  if (y2 === 310) {
+    y2Forward = false;
+  }
+
+  if (y3 === 100) {
+    y3Forward = true;
+  }
+
+  if (y3 === 317) {
+    y3Forward = false;
+  }
+
+  y1Forward ? y1 += 1 : y1 -= 1;
+  y2Forward ? y2 += 1 : y2 -= 1;
+  y3Forward ? y3 += 1 : y3 -= 1;
+}
+
+drawVisor();
+animate();
+</script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) --></html>

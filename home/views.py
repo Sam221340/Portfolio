@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect, get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponseForbidden
 from home.models import Blog
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -113,10 +113,9 @@ def signin(request):
         username = request.POST['username']
         pass1 = request.POST['pass1']
 
-        user = authenticate(username=username, password=pass1)
+        # user = authenticate(username=username, password=pass1)
 
-        if user is not None:
-            login(request, user)
+        if username == 'pallavi' and pass1 == '04112024':
             return redirect('drag')  # Assuming 'homepage' is the name of your homepage URL pattern
         else:
             messages.error(request, 'Invalid username or password')
@@ -124,11 +123,15 @@ def signin(request):
 
     return render(request, 'login.html')
 
-@login_required
+# @login_required
+# def drag(request):
+#     return render(request,'drag.html')
+
 def drag(request):
-    if not request.user.is_authenticated:
-        return redirect('logiini')
-    return render(request,'drag.html')
+    referer = request.META.get('HTTP_REFERER')
+    if referer != 'http://127.0.0.1:8000/logiiin':
+        return render(request,'404.html')
+    return render(request, 'drag.html')
 # def blogpost (request, slug):
 #     blog = Blog.objects.filter(slug=slug).first()
 #     context = {'blog': blog}
