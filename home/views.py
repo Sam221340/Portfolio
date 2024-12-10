@@ -115,7 +115,7 @@ def signin(request):
 
         # user = authenticate(username=username, password=pass1)
 
-        if username == 'pallavi' and pass1 == '04112024':
+        if username == 'sam' and pass1 == '221340':
             return redirect('drag')  # Assuming 'homepage' is the name of your homepage URL pattern
         else:
             messages.error(request, 'Invalid username or password')
